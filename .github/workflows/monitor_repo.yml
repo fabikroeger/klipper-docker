@@ -11,11 +11,12 @@ jobs:
     strategy:
       matrix:
         repos:
-          - KevinOConnor/klipper
+          - Klipper3d/klipper
           - jordanruthe/KlipperScreen
           - meteyou/mainsail
           - Arksine/moonraker
           - pikvm/ustreamer
+          - fluidd-core/fluidd
           
     runs-on: ubuntu-latest
     steps:
