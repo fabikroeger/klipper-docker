@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 WORKDIR /frontend
 
 ADD ${FRONTEND_ZIP_URL} /tmp/frontend.zip
-RUN apt-get update && apt-get install -y unzip
+RUN apt-get update && apt-get install -–no-install-recommends -y unzip
 RUN unzip /tmp/frontend.zip -d /frontend
 
 FROM nginx:alpine as image

@@ -9,7 +9,7 @@ ARG KLIPPER_VENV_DIR=${HOME}/klipperscreen-env
 
 RUN useradd -d ${HOME} -ms /bin/bash ${USER}
 RUN apt-get update && \
-    apt-get install -y locales git sudo wget gzip tar python3-distutils python3-gi \
+    apt-get install -–no-install-recommends -y locales git sudo wget gzip tar python3-distutils python3-gi \
     python3-gi-cairo python3-virtualenv gir1.2-gtk-3.0 virtualenv matchbox-keyboard python3-dev \
     libjpeg-dev zlib1g-dev libatlas-base-dev gobject-introspection libgirepository1.0-dev \
     libcairo2-dev wireless-tools x11-xserver-utils xdotool
@@ -45,7 +45,7 @@ ARG KLIPPER_VENV_DIR=${HOME}/klipperscreen-env
 RUN useradd --user-group --no-log-init --shell /bin/false -m -d ${HOME} ${USER}
 
 RUN apt-get update && \
-    apt-get install -y locales git sudo libatlas-base-dev python3-distutils python3-gi \
+    apt-get install -–no-install-recommends -y locales git sudo libatlas-base-dev python3-distutils python3-gi \
     python3-gi-cairo python3-virtualenv gir1.2-gtk-3.0 virtualenv matchbox-keyboard \
     wireless-tools x11-xserver-utils xdotool curl
 

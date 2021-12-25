@@ -3,9 +3,7 @@ WORKDIR /build
 
 
 RUN apt-get update && \
-    apt-get install -y git libwebp-dev ca-certificates build-essential libevent-dev libjpeg62-dev uuid-dev libbsd-dev make gcc libjpeg8 libjpeg-turbo8 libuuid1 libbsd0
-
-RUN apt install -y libjpeg-turbo8-dev gpiod libgpiod-dev
+    apt-get install -–no-install-recommends -y git libwebp-dev ca-certificates build-essential libevent-dev libjpeg62-dev uuid-dev libbsd-dev make gcc libjpeg8 libjpeg-turbo8 libuuid1 libbsd0 libjpeg-turbo8-dev gpiod libgpiod-dev
 
 RUN git clone --depth=1 https://github.com/pikvm/ustreamer
 
@@ -15,7 +13,7 @@ RUN make WITH_GPIO=1
 FROM arm64v8/ubuntu as RUN
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -–no-install-recommends -y \
         ca-certificates \
         libevent-2.1 \
         libevent-pthreads-2.1-7 \
