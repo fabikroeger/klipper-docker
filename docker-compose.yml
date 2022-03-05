@@ -2,7 +2,9 @@ version: '3.4'
 
 services:
   klipper:
-    image: gucio1200/klipper:latest
+    build:
+      dockerfile: ./klipper/Dockerfile
+      context: .
     container_name: klipper
     restart: unless-stopped
     volumes:
@@ -29,7 +31,9 @@ services:
 #      - /dev:/dev
 
   moonraker:
-    image: gucio1200/moonraker:latest
+    build:
+      dockerfile: ./moonraker/Dockerfile
+      context: .
     container_name: moonraker
     privileged: true
     ports:
@@ -55,7 +59,6 @@ services:
       - /dev:/dev
 
   klipperscreen:
-    image: gucio1200/klipperscreen:latest
     build:
       dockerfile: ./klipperscreen/Dockerfile
       context: .
@@ -79,23 +82,24 @@ services:
       - klipperscreen:/home/klippy/klipperscreen
       - ./runtime/config/KlipperScreen.conf:/home/klippy/KlipperScreen.conf
 
-  fluidd:
-    image: cadriel/fluidd:latest
-    container_name: fluidd
-    ports:
-      - 8010:80
-    restart: unless-stopped
-    depends_on:
-      moonraker:
-        condition: service_healthy
-    links:
-      - moonraker:moonraker
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.fluidd.rule=PathPrefix(`/`)"
+  # fluidd:
+  #   build:
+  #     dockerfile: ./fluidd/Dockerfile
+  #     context: .
+  #   container_name: fluidd
+  #   ports:
+  #     - 8010:80
+  #   restart: unless-stopped
+  #   depends_on:
+  #     moonraker:
+  #       condition: service_healthy
+  #   links:
+  #     - moonraker:moonraker
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.fluidd.rule=PathPrefix(`/`)"
 
   ustreamer:
-    image: gucio1200/ustreamer:latest
     build:
       dockerfile: ./ustreamer/Dockerfile
       context: .

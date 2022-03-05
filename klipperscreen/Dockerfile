@@ -1,4 +1,4 @@
-FROM arm64v8/python:slim as builder
+FROM python:slim as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -34,7 +34,7 @@ RUN ${KLIPPER_VENV_DIR}/bin/pip install --upgrade --force-reinstall --no-binary 
 
 WORKDIR ${HOME}
 
-FROM arm64v8/python:slim as image
+FROM python:slim as image
 
 ARG DEBIAN_FRONTEND=noninteractive
 

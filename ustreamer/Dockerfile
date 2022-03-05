@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu as build
+FROM ubuntu as build
 WORKDIR /build
 
 
@@ -12,7 +12,7 @@ RUN git clone --depth=1 https://github.com/pikvm/ustreamer
 WORKDIR /build/ustreamer/
 RUN make WITH_GPIO=1
 
-FROM arm64v8/ubuntu as RUN
+FROM ubuntu as RUN
 
 RUN apt-get update && \
     apt-get install -y \
